@@ -50,7 +50,6 @@
 		keyboards.default.configFile = ./config/kanata/config.kbd;
 	};
 
-  programs.firefox.enable = true;
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;

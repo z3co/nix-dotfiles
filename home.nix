@@ -6,6 +6,7 @@
   home.stateVersion = "25.11";
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+		nerd-fonts.caskaydia-cove
   ];
   programs.git = {
 		enable = true;

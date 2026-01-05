@@ -24,6 +24,7 @@
   };
 
   hardware.graphics.enable = true;
+  hardware.graphics.enable32Bit = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
@@ -56,6 +57,9 @@
   };
   programs.zsh.enable = true;
 	programs.neovim.defaultEditor = true;
+	programs.steam.enable = true;
+	programs.steam.gamescopeSession.enable = true;
+	programs.gamemode.enable = true;
 
   fonts.fontDir.enable = true;
 
@@ -73,6 +77,8 @@
     banana-cursor
 		gcc
 		luajitPackages.luarocks
+		mangohud
+		protonup-ng
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -49,6 +49,7 @@
 		enable = true;
 		keyboards.default.configFile = ./config/kanata/config.kbd;
 	};
+	services.twingate.enable = true;
 
   programs.hyprland = {
     enable = true;

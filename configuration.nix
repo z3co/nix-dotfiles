@@ -79,6 +79,7 @@
 		luajitPackages.luarocks
 		mangohud
 		protonup-ng
+		swaynotificationcenter
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

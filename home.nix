@@ -9,9 +9,11 @@
   ];
   programs.git = {
 		enable = true;
-		userName = "z3co";
-		userEmail = "jepper123411@proton.me";
-		extraConfig = {
+		settings = {
+			user = {
+				name = "Jeppe Wolff Johansen";
+				email = "jepper123411@proton.me";
+			};
 			init = { defaultBranch = "main"; };
 			commit.gpgsign = true;
 			gpg.format = "ssh";

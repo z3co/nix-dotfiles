@@ -1,10 +1,13 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -25,7 +28,7 @@
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
@@ -33,7 +36,7 @@
 
   users.users.z3co = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     initialPassword = "123";
     shell = pkgs.zsh;
   };
@@ -45,26 +48,25 @@
     pulse.enable = true;
   };
   services.flatpak.enable = true;
-	services.kanata = {
-		enable = true;
-		keyboards.default.configFile = ./config/kanata/config.kbd;
-	};
-	services.twingate.enable = true;
+  services.kanata = {
+    enable = true;
+    keyboards.default.configFile = ./config/kanata/config.kbd;
+  };
+  services.twingate.enable = true;
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
   programs.zsh.enable = true;
-	programs.neovim.defaultEditor = true;
-	programs.steam.enable = true;
-	programs.steam.gamescopeSession.enable = true;
-	programs.gamemode.enable = true;
+  programs.neovim.defaultEditor = true;
+  programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs.gamemode.enable = true;
 
   fonts.fontDir.enable = true;
 
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     kitty
     fzf
@@ -75,16 +77,12 @@
     wofi
     waybar
     banana-cursor
-		gcc
-		luajitPackages.luarocks
-		mangohud
-		protonup-ng
-		swaynotificationcenter
+    mangohud
+    protonup-ng
+    swaynotificationcenter
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
-

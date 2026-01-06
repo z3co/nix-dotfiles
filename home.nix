@@ -1,32 +1,115 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.username = "z3co";
   home.homeDirectory = "/home/z3co";
   home.stateVersion = "25.11";
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-		nerd-fonts.caskaydia-cove
+    nerd-fonts.caskaydia-cove
   ];
+  programs.neovim = let
+    toLua = str: "lua << EOF\n${str}\nEOF\n";
+    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+  in {
+    enable = true;
+
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+
+    extraPackages = with pkgs; [
+      luajitPackages.lua-lsp
+      nixd
+      alejandra
+      wl-clipboard
+    ];
+
+    plugins = with pkgs.vimPlugins; [
+      {
+        plugin = nvim-lspconfig;
+        config = toLuaFile ./config/nvim/plugin/lsp.lua;
+      }
+
+      {
+        plugin = comment-nvim;
+        config = toLua "require(\"Comment\").setup()";
+      }
+
+      {
+        plugin = gruvbox-nvim;
+        config = "colorscheme gruvbox";
+      }
+
+      neodev-nvim
+
+      nvim-cmp
+      {
+        plugin = nvim-cmp;
+        config = toLuaFile ./config/nvim/plugin/cmp.lua;
+      }
+
+      {
+        plugin = telescope-nvim;
+        config = toLuaFile ./config/nvim/plugin/telescope.lua;
+      }
+
+      telescope-fzf-native-nvim
+
+      cmp_luasnip
+      cmp-nvim-lsp
+
+      luasnip
+      friendly-snippets
+
+      lualine-nvim
+      nvim-web-devicons
+
+      nvim-treesitter
+      {
+        plugin = nvim-treesitter.withPlugins (p: [
+          p.tree-sitter-nix
+          p.tree-sitter-vim
+          p.tree-sitter-bash
+          p.tree-sitter-lua
+          p.tree-sitter-python
+          p.tree-sitter-json
+        ]);
+        config = toLuaFile ./config/nvim/plugin/treesitter.lua;
+      }
+
+      vim-nix
+
+      # {
+      #   plugin = vimPlugins.own-onedark-nvim;
+      #   config = "colorscheme onedark";
+      # }
+    ];
+    extraLuaConfig = ''
+      ${builtins.readFile ./config/nvim/options.lua}
+    '';
+  };
   programs.git = {
-		enable = true;
-		settings = {
-			user = {
-				name = "Jeppe Wolff Johansen";
-				email = "jepper123411@proton.me";
-			};
-			init = { defaultBranch = "main"; };
-			commit.gpgsign = true;
-			gpg.format = "ssh";
-			user.signingkey = "~/.ssh/id_ed25519.pub";
-		};
-	};
-	programs.tmux.enable = true;
+    enable = true;
+    settings = {
+      user = {
+        name = "Jeppe Wolff Johansen";
+        email = "jepper123411@proton.me";
+      };
+      init = {defaultBranch = "main";};
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
+    };
+  };
+  programs.tmux.enable = true;
   programs.zsh = {
     enable = true;
     shellAliases = {
-      ll="ls -lA --color";
-      cd="z";
+      ll = "ls -lA --color";
+      cd = "z";
     };
     autosuggestion.enable = true;
     enableCompletion = true;
@@ -40,23 +123,22 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "zoxide" "fzf" ];
+      plugins = ["git" "zoxide" "fzf"];
     };
     profileExtra = ''
-      export EDITOR=nvim
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-	start-hyprland
-      fi
+           export EDITOR=nvim
+           if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+      start-hyprland
+           fi
     '';
   };
   programs.oh-my-posh = {
     enable = true;
     enableZshIntegration = true;
-		configFile = ./config/ohmyposh/base.toml;
+    configFile = ./config/ohmyposh/base.toml;
   };
   home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/waybar".source = ./config/waybar;
-	home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-dotfiles/config/nvim";
   home.file.".config/wofi".source = ./config/wofi;
   home.file.".config/kitty".source = ./config/kitty;
   home.file.".config/backgrounds".source = ./config/backgrounds;

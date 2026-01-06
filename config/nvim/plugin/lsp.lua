@@ -27,14 +27,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 require('neodev').setup()
-vim.lsp.enable({"lua_ls", "nixd" })
+vim.lsp.enable({"lua_ls", "nixd", "gopls" })
 vim.lsp.config("lua_ls", {
     on_attach = on_attach,
     capabilities = capabilities,
 	root_dir = function()
         return vim.loop.cwd()
     end,
-	cmd = { "lua-lsp" },
+	cmd = { "lua-language-server" },
     settings = {
         Lua = {
             workspace = { checkThirdParty = false },
@@ -47,3 +47,8 @@ vim.lsp.config("nixd", {
     on_attach = on_attach,
     capabilities = capabilities,
 })
+
+vim.lsp.config["gopls"] = {
+	on_attach = on_attach,
+	capabilities = capabilities,
+}

@@ -9,21 +9,22 @@
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
+    alejandra
   ];
   programs.neovim = let
     toLua = str: "lua << EOF\n${str}\nEOF\n";
     toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
   in {
     enable = true;
+    defaultEditor = true;
 
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
 
     extraPackages = with pkgs; [
-      luajitPackages.lua-lsp
+      lua-language-server
       nixd
-      alejandra
       wl-clipboard
     ];
 
@@ -126,7 +127,6 @@
       plugins = ["git" "zoxide" "fzf"];
     };
     profileExtra = ''
-           export EDITOR=nvim
            if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
       start-hyprland
            fi

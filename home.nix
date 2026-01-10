@@ -13,7 +13,6 @@
   ];
   programs.neovim = let
     toLua = str: "lua << EOF\n${str}\nEOF\n";
-    toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
   in {
     enable = true;
     defaultEditor = true;
@@ -26,12 +25,13 @@
       lua-language-server
       nixd
       wl-clipboard
+      tree-sitter
     ];
 
     plugins = with pkgs.vimPlugins; [
       {
         plugin = nvim-lspconfig;
-        config = toLuaFile ./config/nvim/plugin/lsp.lua;
+        # config = toLuaFile ./config/nvim/plugin/lsp.lua;
       }
 
       {
@@ -49,12 +49,12 @@
       nvim-cmp
       {
         plugin = nvim-cmp;
-        config = toLuaFile ./config/nvim/plugin/cmp.lua;
+        # config = toLuaFile ./config/nvim/plugin/cmp.lua;
       }
 
       {
         plugin = telescope-nvim;
-        config = toLuaFile ./config/nvim/plugin/telescope.lua;
+        # config = toLuaFile ./config/nvim/plugin/telescope.lua;
       }
 
       telescope-fzf-native-nvim
@@ -78,7 +78,7 @@
           p.tree-sitter-python
           p.tree-sitter-json
         ]);
-        config = toLuaFile ./config/nvim/plugin/treesitter.lua;
+        # config = toLuaFile ./config/nvim/plugin/treesitter.lua;
       }
 
       vim-nix
@@ -90,6 +90,11 @@
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./config/nvim/options.lua}
+
+      ${builtins.readFile ./config/nvim/plugin/lsp.lua}
+      ${builtins.readFile ./config/nvim/plugin/telescope.lua}
+      ${builtins.readFile ./config/nvim/plugin/cmp.lua}
+      ${builtins.readFile ./config/nvim/plugin/treesitter.lua}
     '';
   };
   programs.git = {

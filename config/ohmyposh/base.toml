@@ -18,7 +18,7 @@ final_space = true
   newline = true
 
   [[blocks.segments]]
-    template = '{{ .Path }}'
+		template = '{{ .Path }}{{ if .Env.IN_NIX_SHELL }} <p:grey>@</><#7ebae4><b>{{ .Env.name }}</b></>{{ end }}'
     foreground = 'blue'
     background = 'transparent'
     type = 'path'

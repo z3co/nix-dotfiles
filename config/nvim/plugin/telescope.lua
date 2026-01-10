@@ -10,4 +10,9 @@ require('telescope').setup({
   	}
 })
 
+vim.g.mapleader = " "
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "telescope find files" })
+vim.keymap.set("n", "<leader>e", ":Ex!<CR>", { desc = "Open netrw" })
+
 require('telescope').load_extension('fzf')

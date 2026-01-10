@@ -74,6 +74,7 @@
     hyprpaper
     hyprlock
     hypridle
+    hyprshot
     wofi
     waybar
     banana-cursor

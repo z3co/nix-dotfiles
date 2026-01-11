@@ -84,6 +84,8 @@
     protonup-ng
     swaynotificationcenter
     pass
+    gnupg
+    pinentry
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

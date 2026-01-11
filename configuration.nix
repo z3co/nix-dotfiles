@@ -36,7 +36,7 @@
 
   users.users.z3co = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "docker"];
     initialPassword = "123";
     shell = pkgs.zsh;
   };
@@ -63,6 +63,8 @@
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
+
+  virtualisation.docker.enable = true;
 
   fonts.fontDir.enable = true;
 

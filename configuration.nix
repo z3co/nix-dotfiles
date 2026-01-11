@@ -68,6 +68,8 @@
 
   fonts.fontDir.enable = true;
 
+  services.gnupg.agent.enable = true;
+
   environment.systemPackages = with pkgs; [
     wget
     kitty
@@ -84,8 +86,6 @@
     protonup-ng
     swaynotificationcenter
     pass
-    gnupg
-    pinentry
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

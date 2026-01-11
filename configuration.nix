@@ -83,6 +83,7 @@
     mangohud
     protonup-ng
     swaynotificationcenter
+    pass
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

@@ -68,7 +68,7 @@
 
   fonts.fontDir.enable = true;
 
-  services.gnupg.agent.enable = true;
+  programs.gnupg.agent.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget

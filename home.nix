@@ -132,9 +132,9 @@
       plugins = ["git" "zoxide" "fzf"];
     };
     profileExtra = ''
-           if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-      start-hyprland
-           fi
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+         exec start-hyprland
+      fi
     '';
   };
   programs.oh-my-posh = {

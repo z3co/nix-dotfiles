@@ -33,6 +33,7 @@
     modesetting.enable = true;
     open = true;
   };
+  hardware.bluetooth.enable = true;
 
   users.users.z3co = {
     isNormalUser = true;
@@ -86,6 +87,7 @@
     protonup-ng
     swaynotificationcenter
     pass
+    wl-clipboard
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

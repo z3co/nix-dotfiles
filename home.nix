@@ -40,8 +40,7 @@
       }
 
       {
-        plugin = gruvbox-nvim;
-        config = "colorscheme gruvbox";
+        plugin = catppuccin-nvim;
       }
 
       neodev-nvim
@@ -95,6 +94,7 @@
       ${builtins.readFile ./config/nvim/plugin/telescope.lua}
       ${builtins.readFile ./config/nvim/plugin/cmp.lua}
       ${builtins.readFile ./config/nvim/plugin/treesitter.lua}
+      ${builtins.readFile ./config/nvim/plugin/colorscheme.lua}
     '';
   };
   programs.git = {

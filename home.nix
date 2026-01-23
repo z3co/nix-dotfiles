@@ -76,6 +76,7 @@
           p.tree-sitter-lua
           p.tree-sitter-python
           p.tree-sitter-json
+          p.tree-sitter-go
         ]);
         # config = toLuaFile ./config/nvim/plugin/treesitter.lua;
       }

@@ -66,6 +66,7 @@
 
       lualine-nvim
       nvim-web-devicons
+      rustaceanvim
 
       nvim-treesitter
       {

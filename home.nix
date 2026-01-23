@@ -90,11 +90,11 @@
     ];
     extraLuaConfig = ''
       ${builtins.readFile ./config/nvim/options.lua}
+      ${builtins.readFile ./config/nvim/plugin/treesitter.lua}
 
       ${builtins.readFile ./config/nvim/plugin/lsp.lua}
       ${builtins.readFile ./config/nvim/plugin/telescope.lua}
       ${builtins.readFile ./config/nvim/plugin/cmp.lua}
-      ${builtins.readFile ./config/nvim/plugin/treesitter.lua}
       ${builtins.readFile ./config/nvim/plugin/colorscheme.lua}
     '';
   };

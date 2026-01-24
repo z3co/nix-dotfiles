@@ -75,17 +75,15 @@
     pinentryPackage = pkgs.pinentry-curses;
   };
 
-  security.pam.u2f = {
-    enable = true;
-    settings = {
-      cue = true;
-      origin = "pam://yubi";
-      authfile = "/etc/u2f-mappings";
-    };
-  };
   security.pam.services = {
     login.u2fAuth = true;
     sudo.u2fAuth = true;
+  };
+  security.pam.yubico = {
+    enable = true;
+    debug = true;
+    mode = "challenge-response";
+    id = [ "34778838" ];
   };
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization ];
@@ -107,6 +105,7 @@
     swaynotificationcenter
     pass
     wl-clipboard
+    yubikey-manager
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

@@ -72,12 +72,12 @@
   programs.gnupg.agent= {
     enable = true;
     enableSSHSupport = true;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   security.pam.u2f = {
     enable = true;
     settings = {
-      interactive = true;
       cue = true;
       origin = "pam://yubi";
       authfile = "/etc/u2f-mappings";

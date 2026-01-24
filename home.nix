@@ -108,8 +108,8 @@
       };
       init = {defaultBranch = "main";};
       commit.gpgsign = true;
-      gpg.format = "ssh";
-      user.signingkey = "~/.ssh/id_ed25519.pub";
+      gpg.format = "openpgp";
+      user.signingkey = "5CC2407DC99940E3C0F6F4CB1360D48A39CC2667";
     };
   };
   programs.tmux.enable = true;

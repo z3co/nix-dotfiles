@@ -69,7 +69,26 @@
 
   fonts.fontDir.enable = true;
 
-  programs.gnupg.agent.enable = true;
+  programs.gnupg.agent= {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  security.pam.u2f = {
+    enable = true;
+    settings = {
+      interactive = true;
+      cue = true;
+      origin = "pam://yubi";
+      authfile = "/etc/u2f-mappings";
+    };
+  };
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
+  services.pcscd.enable = true;
+  services.udev.packages = [ pkgs.yubikey-personalization ];
 
   environment.systemPackages = with pkgs; [
     wget

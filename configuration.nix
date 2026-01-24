@@ -106,6 +106,7 @@
     pass
     wl-clipboard
     yubikey-manager
+    yubico-piv-tool
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

@@ -109,7 +109,7 @@
       init = {defaultBranch = "main";};
       commit.gpgsign = true;
       gpg.format = "openpgp";
-      user.signingkey = "51F35AF7330E235B";
+      user.signingkey = "1360D48A39CC2667";
     };
   };
   programs.tmux.enable = true;

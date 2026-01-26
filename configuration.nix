@@ -79,11 +79,10 @@
     login.u2fAuth = true;
     sudo.u2fAuth = true;
   };
-  security.pam.yubico = {
+  security.pam.u2f = {
     enable = true;
-    debug = true;
-    mode = "challenge-response";
-    id = [ "34778838" ];
+    settings.cue = true;
+    settings.authfile = "/etc/secure-keys/u2f_keys";
   };
   services.pcscd.enable = true;
   services.udev.packages = [ pkgs.yubikey-personalization ];

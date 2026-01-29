@@ -29,7 +29,7 @@
       wl-clipboard
       tree-sitter
       ripgrep
-      jsregexp
+      luajitPackages.jsregexp
     ];
 
     plugins = with pkgs.vimPlugins; [

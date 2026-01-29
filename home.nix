@@ -90,7 +90,7 @@
       #   config = "colorscheme onedark";
       # }
     ];
-    extraLuaConfig = ''
+    initLua = ''
       ${builtins.readFile ./config/nvim/options.lua}
       ${builtins.readFile ./config/nvim/plugin/treesitter.lua}
 

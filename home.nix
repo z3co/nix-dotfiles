@@ -10,6 +10,7 @@
     nerd-fonts.jetbrains-mono
     nerd-fonts.caskaydia-cove
     alejandra
+    timewarrior
   ];
   programs.neovim = let
     toLua = str: "lua << EOF\n${str}\nEOF\n";

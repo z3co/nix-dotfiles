@@ -11,6 +11,7 @@
     nerd-fonts.caskaydia-cove
     alejandra
     timewarrior
+    fd
   ];
   programs.neovim = let
     toLua = str: "lua << EOF\n${str}\nEOF\n";
@@ -27,6 +28,7 @@
       nixd
       wl-clipboard
       tree-sitter
+      ripgrep
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -43,6 +45,7 @@
       {
         plugin = catppuccin-nvim;
       }
+      plenary-nvim
 
       neodev-nvim
 

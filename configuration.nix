@@ -108,6 +108,7 @@
     yubico-piv-tool
     vicinae
     just
+    pulseaudio
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];

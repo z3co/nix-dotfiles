@@ -144,6 +144,13 @@
          exec start-hyprland
       fi
     '';
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab;
+        file = "share/fzf-tab/fzf-tab.plugin.zsh";
+      }
+    ];
   };
   programs.oh-my-posh = {
     enable = true;

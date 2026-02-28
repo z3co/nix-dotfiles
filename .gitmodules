@@ -1,6 +1,3 @@
-[submodule "config/nvim_new"]
-	path = config/nvim_new
-	url = git@github.com:z3co/config.nvim
 [submodule "config/nvim"]
 	path = config/nvim
 	url = git@github.com:z3co/config.nvim

@@ -93,7 +93,7 @@ pkgs,
 		configFile = ./config/ohmyposh/base.toml;
 	};
 	xdg.configFile."nvim" = {
-		source = config.lib.file.mkOutOfStoreSymlink "/home/z3co/nixos-dotfiles/config/nvim_new/";
+		source = config.lib.file.mkOutOfStoreSymlink "/home/z3co/nixos-dotfiles/config/nvim/";
 	};
 	home.file.".config/hypr".source = ./config/hypr;
 	home.file.".config/waybar".source = ./config/waybar;

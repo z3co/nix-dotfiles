@@ -12,7 +12,7 @@ pkgs,
 	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 
-	networking.hostName = "nixos"; # Define your hostname.
+	networking.hostName = "nixos-btw"; # Define your hostname.
 	services.getty.autologinUser = "z3co";
 	nixpkgs.config.allowUnfree = true;
 

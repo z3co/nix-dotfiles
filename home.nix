@@ -50,7 +50,7 @@ pkgs,
 			init = {defaultBranch = "main";};
 			commit.gpgsign = true;
 			gpg.format = "openpgp";
-			user.signingkey = "1360D48A39CC2667";
+			user.signingkey = "786EDF8B70BA5C1A";
 		};
 	};
 	programs.tmux.enable = true;

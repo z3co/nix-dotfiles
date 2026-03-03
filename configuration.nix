@@ -114,6 +114,7 @@ pkgs,
 		vicinae
 		just
 		pulseaudio
+		(callPackage ./packages/imagineer.nix {})
 	];
 
 	nix.settings.experimental-features = ["nix-command" "flakes"];

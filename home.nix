@@ -74,11 +74,6 @@ pkgs,
 			enable = true;
 			plugins = ["git" "zoxide" "fzf"];
 		};
-		profileExtra = ''
-	  if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-		 exec start-hyprland
-	  fi
-		'';
 		plugins = [
 			{
 				name = "fzf-tab";
@@ -92,12 +87,8 @@ pkgs,
 		enableZshIntegration = true;
 		configFile = ./config/ohmyposh/base.toml;
 	};
-	xdg.configFile."nvim" = {
-		source = config.lib.file.mkOutOfStoreSymlink "/home/z3co/nixos-dotfiles/config/nvim/";
-	};
-	home.file.".config/hypr".source = ./config/hypr;
-	home.file.".config/waybar".source = ./config/waybar;
-	home.file.".config/wofi".source = ./config/wofi;
+	xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/z3co/nixos-dotfiles/config/nvim/";
+	xdg.configFile."niri".source = config.lib.file.mkOutOfStoreSymlink "/home/z3co/nixos-dotfiles/config/niri/";
 	home.file.".config/kitty".source = ./config/kitty;
 	home.file.".config/backgrounds".source = ./config/backgrounds;
 	home.file.".config/tmux".source = ./config/tmux;

@@ -13,7 +13,6 @@ pkgs,
 	boot.loader.efi.canTouchEfiVariables = true;
 
 	networking.hostName = "nixos-btw"; # Define your hostname.
-	services.getty.autologinUser = "z3co";
 	nixpkgs.config.allowUnfree = true;
 
 	networking.networkmanager.enable = true;
@@ -26,6 +25,7 @@ pkgs,
 		keyMap = "dk";
 	};
 
+	programs.niri.enable = true;
 	hardware.graphics.enable = true;
 	hardware.graphics.enable32Bit = true;
 	services.xserver.videoDrivers = ["nvidia"];
@@ -59,10 +59,16 @@ pkgs,
 		keyboards.default.configFile = ./config/kanata/config.kbd;
 	};
 	services.twingate.enable = true;
-
-	programs.hyprland = {
+	services.displayManager.sessionPackages = [ 
+		pkgs.niri
+	];
+	services.displayManager.ly = {
 		enable = true;
-		xwayland.enable = true;
+		settings = {
+			animate = true;
+			animation = 1;
+			hide_borders = true;
+		};
 	};
 	programs.zsh.enable = true;
 	programs.neovim.defaultEditor = true;
@@ -92,21 +98,16 @@ pkgs,
 	services.pcscd.enable = true;
 	services.udev.packages = [ pkgs.yubikey-personalization ];
 
+	environment.pathsToLink = [ "/share/wayland-sessions" ];
 	environment.systemPackages = with pkgs; [
+		cmatrix
 		wget
 		kitty
 		fzf
 		zoxide
-		hyprpaper
-		hyprlock
-		hypridle
-		hyprshot
-		wofi
-		waybar
 		banana-cursor
 		mangohud
 		protonup-ng
-		swaynotificationcenter
 		pass
 		wl-clipboard
 		yubikey-manager
@@ -114,6 +115,10 @@ pkgs,
 		vicinae
 		just
 		pulseaudio
+		xwayland-satellite
+		alacritty
+		fuzzel
+		niri
 		(callPackage ./packages/imagineer.nix {})
 	];
 
